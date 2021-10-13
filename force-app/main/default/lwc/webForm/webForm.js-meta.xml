@@ -30,9 +30,6 @@
         description="リスト表示に下書きの申請手続きを含める"
         default="手続き概要"
       />
-      <objects>
-        <object>objApplicationTemplate__c</object>
-      </objects>
         </targetConfig>
         <targetConfig targets="lightningCommunity__Default">
             <property

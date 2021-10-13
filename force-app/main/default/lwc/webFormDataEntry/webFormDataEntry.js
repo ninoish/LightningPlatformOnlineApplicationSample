@@ -11,7 +11,8 @@ import {
 export default class WebFormDataEntry extends LightningElement {
   buttonPreviousEnabled = true;
   buttonNextEnabled = true;
-
+  @api recordId;
+  @api inputData;
   @api currentStep;
   @api createdApplicationRecordId;
   @api appTemplate;
