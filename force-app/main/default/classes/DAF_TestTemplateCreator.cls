@@ -82,7 +82,7 @@ public with sharing class DAF_TestTemplateCreator {
         objApplicationTemplate__c = at.Id,
         Name = '姓',
         Category__c = '標準',
-        StdColumnName__c = 'LastnameKanji__c',
+        StdColumnName__c = 'jpseps__LastnameKanji__c',
         AppTemplateRow__c = ar1_1.Id,
         ColumnOrder__c = 1
       )
@@ -92,7 +92,7 @@ public with sharing class DAF_TestTemplateCreator {
         objApplicationTemplate__c = at.Id,
         Name = '名',
         Category__c = '標準',
-        StdColumnName__c = 'FirstnameKanji__c',
+        StdColumnName__c = 'jpseps__FirstnameKanji__c',
         AppTemplateRow__c = ar1_1.Id,
         ColumnOrder__c = 2
       )
@@ -102,7 +102,7 @@ public with sharing class DAF_TestTemplateCreator {
         objApplicationTemplate__c = at.Id,
         Name = 'ヨミ (姓)',
         Category__c = '標準',
-        StdColumnName__c = 'LastnameYomi__c',
+        StdColumnName__c = 'jpseps__LastnameYomi__c',
         AppTemplateRow__c = ar1_2.Id,
         ColumnOrder__c = 1
       )
@@ -112,7 +112,7 @@ public with sharing class DAF_TestTemplateCreator {
         objApplicationTemplate__c = at.Id,
         Name = 'ヨミ (名)',
         Category__c = '標準',
-        StdColumnName__c = 'FirstnameYomi__c',
+        StdColumnName__c = 'jpseps__FirstnameYomi__c',
         AppTemplateRow__c = ar1_2.Id,
         ColumnOrder__c = 2
       )
@@ -122,7 +122,7 @@ public with sharing class DAF_TestTemplateCreator {
         objApplicationTemplate__c = at.Id,
         Name = 'メールアドレス',
         Category__c = '標準',
-        StdColumnName__c = 'Mail__c',
+        StdColumnName__c = 'jpseps__Mail__c',
         AppTemplateRow__c = ar2_1.Id,
         ColumnOrder__c = 1
       )

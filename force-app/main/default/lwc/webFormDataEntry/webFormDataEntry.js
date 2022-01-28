@@ -21,7 +21,7 @@ export default class WebFormDataEntry extends LightningElement {
   objectApiName = onAPPLICATION_OBJECT;
 
   get selectedPage() {
-    return this.appTemplate.appTemplatePages__r.find(
+    return this.appTemplate.jpseps__appTemplatePages__r.find(
       (p) => p.Id === this.currentStep.id
     );
   }
@@ -31,7 +31,7 @@ export default class WebFormDataEntry extends LightningElement {
       .reduce((ps, d) => {
         const detail = { ...d };
 
-        if (detail.DataType__c === "チェックボックス") {
+        if (detail.jpseps__DataType__c === "チェックボックス") {
           detail.isCheckboxChecked = detail[fnATD_TEXT_FIELD] === "true";
         }
         // 項目が選択リストだった場合は、選択肢の項目値からコンボボックスの選択肢形式に変換
@@ -107,29 +107,29 @@ export default class WebFormDataEntry extends LightningElement {
    * @description  : 入力ページで各項目に値を入力した場合の処理
    **/
   handleChangeValue(e) {
-    const updatedRows = this.selectedPage.appTemplateRows__r.map((r) => {
-      const details = r.appTemplateDetails__r.map((d) => {
+    const updatedRows = this.selectedPage.jpseps__appTemplateRows__r.map((r) => {
+      const details = r.jpseps__appTemplateDetails__r.map((d) => {
         if (d.Id !== e.target.dataset.id) {
           return d;
         }
 
         const detail = { ...d };
-        if (detail.DataType__c === "チェックボックス") {
+        if (detail.jpseps__DataType__c === "チェックボックス") {
           // データタイプがチェックボックスだった場合のみ、設定する値の取り方を変更
-          detail.Value__c = e.target.checked;
+          detail.jpseps__Value__c = e.target.checked;
           detail.isCheckboxChecked = e.target.checked;
         } else {
           // チェックボックス以外は値をそのまま代入
-          detail.Value__c = e.target.value;
+          detail.jpseps__Value__c = e.target.value;
         }
         return detail;
       });
-      return { ...r, appTemplateDetails__r: details };
+      return { ...r, jpseps__appTemplateDetails__r: details };
     });
 
     this.dispatchEvent(
       new CustomEvent("changeinput", {
-        detail: { ...this.selectedPage, appTemplateRows__r: updatedRows }
+        detail: { ...this.selectedPage, jpseps__appTemplateRows__r: updatedRows }
       })
     );
   }
@@ -144,7 +144,7 @@ export default class WebFormDataEntry extends LightningElement {
   /**
    * @description : 「次へ」ボタンを押した時の処理(WebForm のメソッドをコール)
    */
-  handleClickPageNext(e) {
+  handleClickPageNext() {
     if (this._isRequiredValuesCheck()) {
       this.dispatchEvent(new CustomEvent("changepagenext"));
     }
@@ -156,15 +156,15 @@ export default class WebFormDataEntry extends LightningElement {
    */
   _isRequiredValuesCheck() {
     // 実運用時には、未入力であれば先に進めなくする & より詳細な形式チェックを行うなどをすべき
-    const rows = this.selectedPage.appTemplateRows__r;
+    const rows = this.selectedPage.jpseps__appTemplateRows__r;
     for (let i = 0; i < rows.length; i++) {
-      const details = rows[i].appTemplateDetails__r;
+      const details = rows[i].jpseps__appTemplateDetails__r;
       for (let j = 0; j < details.length; j++) {
         const d = details[j];
         if (
-          d.Required__c &&
-          d.DataType__c !== "チェックボックス" &&
-          !d.Value__c
+          d.jpseps__Required__c &&
+          d.jpseps__DataType__c !== "チェックボックス" &&
+          !d.jpseps__Value__c
         ) {
           return confirm(
             `項目「${d.Name}」が入力されていません。このまま続けますか？`

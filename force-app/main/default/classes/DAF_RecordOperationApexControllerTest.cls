@@ -72,7 +72,7 @@ public with sharing class DAF_RecordOperationApexControllerTest {
       objApplicationTemplate__c = ats[0].Id,
       Name = '氏名',
       Category__c = '標準',
-      StdColumnName__c = 'FirstnameKanji__c',
+      StdColumnName__c = 'jpseps__FirstnameKanji__c',
       AppTemplateRow__c = ar1_1.Id,
       ColumnOrder__c = 1
     );
@@ -91,7 +91,7 @@ public with sharing class DAF_RecordOperationApexControllerTest {
       objApplicationTemplate__c = ats[0].Id,
       Name = '氏名',
       Category__c = '標準',
-      StdColumnName__c = 'LastnameKanji__c',
+      StdColumnName__c = 'jpseps__LastnameKanji__c',
       AppTemplateRow__c = ar1_2.Id,
       ColumnOrder__c = 1
     );

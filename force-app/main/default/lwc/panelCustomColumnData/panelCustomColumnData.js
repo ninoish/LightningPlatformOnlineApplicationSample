@@ -2,7 +2,7 @@ import { LightningElement, api, wire } from "lwc";
 import getApplicationCustomColumns from "@salesforce/apex/DAF_RecordOperationApexController.getApplicationCustomColumns";
 import updateApplicationDetails from "@salesforce/apex/DAF_RecordOperationApexController.updateApplicationDetails";
 import { refreshApex } from "@salesforce/apex";
-const nsPrefix = "";
+const nsPrefix = "jpseps__";
 
 //申請定義明細のオブジェクト・各項目のAPI参照名
 const fnATD_OPTIONS_FIELD = nsPrefix + "Options__c";
@@ -77,7 +77,7 @@ export default class PanelCustomColumnData extends LightningElement {
       targetDetail[fnAD_TEXT_FIELD] = "" + checked;
       targetDetail.isCheckboxChecked = checked;
     } else if (dt === "数値" || dt === "通貨") {
-      targetDetail.Number__c = value;
+      targetDetail.jpseps__Number__c = value;
     } else if (dt === "ロングテキストエリア" || dt === "URL") {
       targetDetail[fnAD_LONGTEXTAREA_FIELD] = value;
     } else {

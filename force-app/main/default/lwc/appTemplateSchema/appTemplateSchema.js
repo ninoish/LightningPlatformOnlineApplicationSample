@@ -1,5 +1,5 @@
 // 名前空間の前置詞、および各項目の API 参照名を定義
-export const nsPrefix = "";
+export const nsPrefix = "jpseps__";
 export const fnAT_TITLE_FIELD = "Name";
 export const fnAT_CATEGORY_FIELD = nsPrefix + "Category__c";
 export const fnAT_DESCRIPTION_FIELD = nsPrefix + "Description__c";

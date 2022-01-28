@@ -22,31 +22,31 @@ export default class PanelCustomColumnItem extends LightningElement {
 
   get isText() {
     return (
-      this.item.DataType__c === "メール" || this.item.DataType__c === "テキスト"
+      this.item.jpseps__DataType__c === "メール" || this.item.jpseps__DataType__c === "テキスト"
     );
   }
   get isLongTextArea() {
     return (
-      this.item.DataType__c === "ロングテキストエリア" ||
-      this.item.DataType__c === "URL"
+      this.item.jpseps__DataType__c === "ロングテキストエリア" ||
+      this.item.jpseps__DataType__c === "URL"
     );
   }
   get isNumber() {
-    return this.item.DataType__c === "数値";
+    return this.item.jpseps__DataType__c === "数値";
   }
   get isCurrency() {
-    return this.item.DataType__c === "通貨";
+    return this.item.jpseps__DataType__c === "通貨";
   }
   get isDate() {
-    return this.item.DataType__c === "日付";
+    return this.item.jpseps__DataType__c === "日付";
   }
   get isTime() {
-    return this.item.DataType__c === "時間";
+    return this.item.jpseps__DataType__c === "時間";
   }
   get isCheckbox() {
-    return this.item.DataType__c === "チェックボックス";
+    return this.item.jpseps__DataType__c === "チェックボックス";
   }
   get isPicklist() {
-    return this.item.DataType__c === "選択リスト";
+    return this.item.jpseps__DataType__c === "選択リスト";
   }
 }

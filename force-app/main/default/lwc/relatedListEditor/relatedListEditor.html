@@ -205,8 +205,8 @@
                           <template if:true={r.columns}>
                             <template for:each={r.columns} for:item="c">
                               <lightning-accordion-section
-                                key={c.ColumnOrder__c}
-                                name={c.ColumnOrder__c}
+                                key={c.jpseps__ColumnOrder__c}
+                                name={c.jpseps__ColumnOrder__c}
                                 label={c.displayName}
                                 data-status={c.status}
                                 class="column-section"
@@ -218,7 +218,7 @@
                                     alternative-text="Sort Up"
                                     title="Sort Up"
                                     data-sort-direction="up"
-                                    data-order={c.ColumnOrder__c}
+                                    data-order={c.jpseps__ColumnOrder__c}
                                     data-sort-type="column"
                                     onclick={handleSort}
                                   ></lightning-button-icon>
@@ -228,14 +228,14 @@
                                     alternative-text="Sort down"
                                     title="Sort down"
                                     data-sort-direction="down"
-                                    data-order={c.ColumnOrder__c}
+                                    data-order={c.jpseps__ColumnOrder__c}
                                     data-sort-type="column"
                                     onclick={handleSort}
                                   ></lightning-button-icon>
                                   <lightning-button
                                     icon-name="utility:delete"
                                     variant="destructive-text"
-                                    data-column-order={c.ColumnOrder__c}
+                                    data-column-order={c.jpseps__ColumnOrder__c}
                                     label="項目を削除"
                                     onclick={handleClickDeleteColumn}
                                   ></lightning-button>
@@ -256,6 +256,7 @@
                                         value={newFieldValueName}
                                         field-name={fieldnameName}
                                       ></lightning-input-field>
+
                                       <!-- 補助説明 -->
                                       <lightning-input-field
                                         field-name={fieldnameDescription}

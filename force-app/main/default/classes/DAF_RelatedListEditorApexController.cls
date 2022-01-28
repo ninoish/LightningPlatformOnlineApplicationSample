@@ -242,6 +242,7 @@ public with sharing class DAF_RelatedListEditorApexController {
               for (objApplicationTemplateDetail__c c : r.columns) {
                 c.AppTemplateRow__c = row.Id;
                 c.objApplicationTemplate__c = recordId;
+                c.ColumnOrder__c = c.ColumnOrder__c;
                 c.Required__c = c.Required__c == true ? true : false;
                 cols.add(c);
               }

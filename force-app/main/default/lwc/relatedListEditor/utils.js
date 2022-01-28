@@ -10,40 +10,40 @@ export const formatPages = (details) => {
   const ps = details
     .filter(
       (d) =>
-        d.AppTemplateRow__r?.AppTemplatePage__r?.Id && d.AppTemplateRow__r?.Id
+        d.jpseps__AppTemplateRow__r?.jpseps__AppTemplatePage__r?.Id && d.jpseps__AppTemplateRow__r?.Id
     )
     .reduce((pages, d) => {
       const detail = {
         ...d,
         status: STATUS_SAVED,
         get displayName() {
-          const name = this.Name ?? `項目名未入力 ${this.ColumnOrder__c}`;
-          if (!this.Category__c) {
+          const name = this.Name ?? `項目名未入力 ${this.jpseps__ColumnOrder__c}`;
+          if (!this.jpseps__Category__c) {
             return name;
           }
-          return `${name} [${this.Category__c}] ${
-            this.Category__c === "標準"
-              ? this.StdColumnName__c ?? ""
-              : this.DataType__c ?? ""
+          return `${name} [${this.jpseps__Category__c}] ${
+            this.jpseps__Category__c === "標準"
+              ? this.jpseps__StdColumnName__c ?? ""
+              : this.jpseps__DataType__c ?? ""
           }`;
         }
       };
       const page = pages.find(
-        (p) => p.id === d.AppTemplateRow__r.AppTemplatePage__r.Id
+        (p) => p.id === d.jpseps__AppTemplateRow__r.jpseps__AppTemplatePage__r.Id
       );
       if (!page) {
         pages.push({
-          id: d.AppTemplateRow__r.AppTemplatePage__r.Id,
-          name: d.AppTemplateRow__r.AppTemplatePage__r.Name,
+          id: d.jpseps__AppTemplateRow__r.jpseps__AppTemplatePage__r.Id,
+          name: d.jpseps__AppTemplateRow__r.jpseps__AppTemplatePage__r.Name,
           get displayName() {
             return this.name ?? `ページ名未入力 ${this.order}`;
           },
-          order: d.AppTemplateRow__r.AppTemplatePage__r.Order__c,
+          order: d.jpseps__AppTemplateRow__r.jpseps__AppTemplatePage__r.jpseps__Order__c,
           status: STATUS_SAVED,
           rows: [
             {
-              id: d.AppTemplateRow__r.Id,
-              order: d.AppTemplateRow__r.Order__c,
+              id: d.jpseps__AppTemplateRow__r.Id,
+              order: d.jpseps__AppTemplateRow__r.jpseps__Order__c,
               columns: [detail],
               get displayName() {
                 return `${this.order}行目 : ${this.columns
@@ -55,11 +55,11 @@ export const formatPages = (details) => {
         });
         return pages;
       }
-      const row = page.rows.find((r) => r.id === d.AppTemplateRow__r.Id);
+      const row = page.rows.find((r) => r.id === d.jpseps__AppTemplateRow__r.Id);
       if (!row) {
         page.rows.push({
-          id: d.AppTemplateRow__r.Id,
-          order: d.AppTemplateRow__r.Order__c,
+          id: d.jpseps__AppTemplateRow__r.Id,
+          order: d.jpseps__AppTemplateRow__r.jpseps__Order__c,
           columns: [detail],
           get displayName() {
             return `${this.order}行目 : ${this.columns
@@ -74,7 +74,7 @@ export const formatPages = (details) => {
     }, [])
     .map((p) => {
       p.rows.forEach((r) => {
-        r.columns.sort((a, b) => a.ColumnOrder__c - b.ColumnOrder__c);
+        r.columns.sort((a, b) => a.jpseps__ColumnOrder__c - b.jpseps__ColumnOrder__c);
       });
       p.rows.sort((a, b) => a.order - b.order);
       return p;
@@ -115,37 +115,37 @@ export const addNewRow = (rows) => {
 };
 export const addNewColumn = (columns) => {
   const lastItem =
-    columns.length > 0 ? columns[columns.length - 1] : { ColumnOrder__c: 0 };
-  const newOrder = lastItem.ColumnOrder__c + 1;
+    columns.length > 0 ? columns[columns.length - 1] : { jpseps__ColumnOrder__c: 0 };
+  const newOrder = lastItem.jpseps__ColumnOrder__c + 1;
   columns.push({
     Id: null,
     status: STATUS_DRAFT,
     get displayName() {
-      const name = this.Name ?? `項目名未入力 ${this.ColumnOrder__c}`;
-      if (!this.Category__c) {
+      const name = this.Name ?? `項目名未入力 ${this.jpseps__ColumnOrder__c}`;
+      if (!this.jpseps__Category__c) {
         return name;
       }
-      return `${name} [${this.Category__c}] ${
-        this.Category__c === "標準"
-          ? this.StdColumnName__c ?? ""
-          : this.DataType__c ?? ""
+      return `${name} [${this.jpseps__Category__c}] ${
+        this.jpseps__Category__c === "標準"
+          ? this.jpseps__StdColumnName__c ?? ""
+          : this.jpseps__DataType__c ?? ""
       }`;
     },
-    ColumnOrder__c: newOrder,
+    jpseps__ColumnOrder__c: newOrder,
     Name: `新規項目${newOrder}`,
-    Description__c: null,
-    Options__c: null,
-    Required__c: null,
-    StdColumnName__c: null,
-    DataType__c: null,
-    Category__c: null,
-    Value__c: null,
-    AppTemplateRow__r: {
-      Order__c: null,
-      AppTemplatePage__r: {
+    jpseps__Description__c: null,
+    jpseps__Options__c: null,
+    jpseps__Required__c: null,
+    jpseps__StdColumnName__c: null,
+    jpseps__DataType__c: null,
+    jpseps__Category__c: null,
+    jpseps__Value__c: null,
+    jpseps__AppTemplateRow__r: {
+      jpseps__Order__c: null,
+      jpseps__AppTemplatePage__r: {
         Id: null,
         Name: null,
-        Order__c: null
+        jpseps__Order__c: null
       }
     }
   });
@@ -172,7 +172,7 @@ export const formatPagesForSave = (pages) => {
             return {
               ...r,
               columns: r.columns.map((c) => {
-                delete c.AppTemplateRow__r;
+                delete c.jpseps__AppTemplateRow__r;
                 return c;
               })
             };

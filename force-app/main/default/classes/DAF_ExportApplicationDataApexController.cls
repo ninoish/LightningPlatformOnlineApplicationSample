@@ -9,8 +9,8 @@ public with sharing class DAF_ExportApplicationDataApexController {
    * @return List : 申請定義のリスト
    **/
   @AuraEnabled(cacheable=true)
-  public static List<objApplicationTemplate__c> getApplicationTemplates() {
-    return [SELECT Id, Name FROM objApplicationTemplate__c];
+  public static List<jpseps__objApplicationTemplate__c> getApplicationTemplates() {
+    return [SELECT Id, Name FROM jpseps__objApplicationTemplate__c];
   }
 
   /**
@@ -19,15 +19,15 @@ public with sharing class DAF_ExportApplicationDataApexController {
    * @return List    : 登録された申請データの一覧
    **/
   @AuraEnabled(cacheable=true)
-  public static List<objApplication__c> getApplicationData(String recordId) {
+  public static List<jpseps__objApplication__c> getApplicationData(String recordId) {
     if (String.isBlank(recordId)) {
       return null;
     }
 
     // 定義された標準項目の API 参照名を取得してカンマ区切りの文字列に
-    List<objApplicationTemplateDetail__c> atds = [
+    List<jpseps__objApplicationTemplateDetail__c> atds = [
       SELECT StdColumnName__c
-      FROM objApplicationTemplateDetail__c
+      FROM jpseps__objApplicationTemplateDetail__c
       WHERE objApplicationTemplate__c = :recordId AND Category__c = '標準'
       ORDER BY ColumnOrder__c ASC
     ];

@@ -51,6 +51,7 @@ export default class RelatedListEditor extends LightningElement {
 
   // fields
   objectApiNameApplicationTemplateDetail = APPLICAATIONTEMPLATEDETAIL_OBJECT;
+
   fieldnameName = NAME_FIELD.fieldApiName;
   fieldnameDescription = DESCRIPTION_FIELD.fieldApiName;
   fieldnameCategory = CATEGORY_FIELD.fieldApiName;
@@ -227,7 +228,7 @@ export default class RelatedListEditor extends LightningElement {
       return;
     }
     const targetCol = this.selectedRow.columns.find(
-      (c) => c.ColumnOrder__c === colOrder
+      (c) => c.jpseps__ColumnOrder__c === colOrder
     );
     if (!targetCol) {
       return;
@@ -288,7 +289,7 @@ export default class RelatedListEditor extends LightningElement {
             return r;
           }
           r.columns = r.columns.filter(
-            (c) => c.ColumnOrder__c !== targetCol.ColumnOrder__c
+            (c) => c.jpseps__ColumnOrder__c !== targetCol.jpseps__ColumnOrder__c
           );
           return r;
         });
@@ -297,7 +298,7 @@ export default class RelatedListEditor extends LightningElement {
     }
 
     // 現在選択中の行の場合、別の行を選択する。
-    if (this.selectedColumn.ColumnOrder__c === targetCol.ColumnOrder__c) {
+    if (this.selectedColumn.jpseps__ColumnOrder__c === targetCol.jpseps__ColumnOrder__c) {
       this.selectedColumn = this.selectedRow?.columns[0] ?? null;
     }
 
@@ -344,7 +345,7 @@ export default class RelatedListEditor extends LightningElement {
       this.selectedRow.columns[this.selectedRow.columns.length - 1];
     this.openColumnAccordion(
       this.selectedRow.order,
-      this.selectedColumn.ColumnOrder__c
+      this.selectedColumn.jpseps__ColumnOrder__c
     );
   }
 
@@ -396,7 +397,7 @@ export default class RelatedListEditor extends LightningElement {
   handleToggleColumn(e) {
     const selectedColOrder = parseInt(e.detail.openSections, 10);
     this.selectedColumn = this.selectedRow.columns.find(
-      (c) => c.ColumnOrder__c === selectedColOrder
+      (c) => c.jpseps__ColumnOrder__c === selectedColOrder
     );
   }
 
@@ -476,7 +477,7 @@ export default class RelatedListEditor extends LightningElement {
         : sortType === "row"
         ? this.selectedPage.rows
         : this.pages;
-    const orderKey = sortType === "column" ? "ColumnOrder__c" : "order";
+    const orderKey = sortType === "column" ? "jpseps__ColumnOrder__c" : "order";
 
     sortOrder(sortDirection, order, targetArray, orderKey);
   }
@@ -485,19 +486,19 @@ export default class RelatedListEditor extends LightningElement {
     return this.selectedRow?.order;
   }
   get activeColumnName() {
-    return this.selectedColumn?.ColumnOrder__c;
+    return this.selectedColumn?.jpseps__ColumnOrder__c;
   }
 
   // 新規作成時の項目表示制御関連
   get isStandardColumn() {
-    return this.selectedColumn?.Category__c === "標準";
+    return this.selectedColumn?.jpseps__Category__c === "標準";
   }
   get isCustomColumn() {
-    return this.selectedColumn?.Category__c === "カスタム";
+    return this.selectedColumn?.jpseps__Category__c === "カスタム";
   }
 
   get isCustomColumnPicklist() {
-    return this.selectedColumn?.DataType__c === "選択リスト";
+    return this.selectedColumn?.jpseps__DataType__c === "選択リスト";
   }
 
   //
@@ -505,25 +506,26 @@ export default class RelatedListEditor extends LightningElement {
     return this.selectedColumn?.Name ?? null;
   }
   get newFieldValueDescription() {
-    return this.selectedColumn?.Description__c ?? null;
+    console.log(this.selectedColumn);
+    return this.selectedColumn?.jpseps__Description__c ?? null;
   }
   get newFieldValueCategory() {
-    return this.selectedColumn?.Category__c ?? null;
+    return this.selectedColumn?.jpseps__Category__c ?? null;
   }
   get newFieldValueStdColumnName() {
-    return this.selectedColumn?.StdColumnName__c ?? null;
+    return this.selectedColumn?.jpseps__StdColumnName__c ?? null;
   }
   get newFieldValueDataType() {
-    return this.selectedColumn?.DataType__c ?? null;
+    return this.selectedColumn?.jpseps__DataType__c ?? null;
   }
   get newFieldValueOptions() {
-    return this.selectedColumn?.Options__c ?? null;
+    return this.selectedColumn?.jpseps__Options__c ?? null;
   }
   get newFieldValueRequired() {
-    return this.selectedColumn?.Required__c ?? null;
+    return this.selectedColumn?.jpseps__Required__c ?? null;
   }
   get newFieldValueDefaultValue() {
-    return this.selectedColumn?.Value__c ?? null;
+    return this.selectedColumn?.jpseps__Value__c ?? null;
   }
 
   get selectedPageOrder() {

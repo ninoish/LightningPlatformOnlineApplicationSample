@@ -9,8 +9,8 @@
           <div class="slds-border_bottom">
             <lightning-input
               type="text"
-              label={item.ColumnName__c}
-              value={item.Text__c}
+              label={item.jpseps__ColumnName__c}
+              value={item.jpseps__Text__c}
               readonly
             ></lightning-input>
           </div>
@@ -19,8 +19,8 @@
         <template if:true={isLongTextArea}>
           <div>
             <lightning-textarea
-              label={item.ColumnName__c}
-              value={item.LongTextArea__c}
+              label={item.jpseps__ColumnName__c}
+              value={item.jpseps__LongTextArea__c}
               read-only
             ></lightning-textarea>
           </div>
@@ -30,8 +30,8 @@
           <div class="slds-border_bottom">
             <lightning-input
               type="number"
-              label={item.ColumnName__c}
-              value={item.Number__c}
+              label={item.jpseps__ColumnName__c}
+              value={item.jpseps__Number__c}
               readonly
             ></lightning-input>
           </div>
@@ -41,8 +41,8 @@
           <div class="slds-border_bottom">
             <lightning-input
               type="number"
-              label={item.ColumnName__c}
-              value={item.Number__c}
+              label={item.jpseps__ColumnName__c}
+              value={item.jpseps__Number__c}
               formatter="currency"
               readonly
             ></lightning-input>
@@ -53,8 +53,8 @@
           <div class="slds-border_bottom">
             <lightning-input
               type="date"
-              label={item.ColumnName__c}
-              value={item.Text__c}
+              label={item.jpseps__ColumnName__c}
+              value={item.jpseps__Text__c}
               readonly
             ></lightning-input>
           </div>
@@ -64,8 +64,8 @@
           <div class="">
             <lightning-input
               type="time"
-              label={item.ColumnName__c}
-              value={item.Text__c}
+              label={item.jpseps__ColumnName__c}
+              value={item.jpseps__Text__c}
               readonly
             ></lightning-input>
           </div>
@@ -78,7 +78,7 @@
             <template if:true={item.isCheckboxChecked}>
               <lightning-input
                 type="checkbox"
-                label={item.ColumnName__c}
+                label={item.jpseps__ColumnName__c}
                 checked
                 disabled
                 readonly
@@ -88,7 +88,7 @@
             <template if:false={item.isCheckboxChecked}>
               <lightning-input
                 type="checkbox"
-                label={item.ColumnName__c}
+                label={item.jpseps__ColumnName__c}
                 readonly
                 disabled
               ></lightning-input
@@ -100,8 +100,8 @@
           <div class="slds-border_bottom">
             <lightning-input
               type="text"
-              label={item.ColumnName__c}
-              value={item.Text__c}
+              label={item.jpseps__ColumnName__c}
+              value={item.jpseps__Text__c}
               readonly
             ></lightning-input>
           </div>
@@ -134,8 +134,8 @@
       <template if:true={isText}>
         <lightning-input
           type="text"
-          label={item.ColumnName__c}
-          value={item.Text__c}
+          label={item.jpseps__ColumnName__c}
+          value={item.jpseps__Text__c}
           data-id={item.Id}
           onchange={handleChangeValue}
         ></lightning-input>
@@ -143,8 +143,8 @@
       <!-- ロングテキストエリア項目 -->
       <template if:true={isLongTextArea}>
         <lightning-textarea
-          label={item.ColumnName__c}
-          value={item.LongTextArea__c}
+          label={item.jpseps__ColumnName__c}
+          value={item.jpseps__LongTextArea__c}
           data-id={item.Id}
           onchange={handleChangeValue}
         >
@@ -154,8 +154,8 @@
       <template if:true={isNumber}>
         <lightning-input
           type="number"
-          label={item.ColumnName__c}
-          value={item.Number__c}
+          label={item.jpseps__ColumnName__c}
+          value={item.jpseps__Number__c}
           data-id={item.Id}
           onchange={handleChangeValue}
         >
@@ -165,8 +165,8 @@
       <template if:true={isCurrency}>
         <lightning-input
           type="number"
-          label={item.ColumnName__c}
-          value={item.Number__c}
+          label={item.jpseps__ColumnName__c}
+          value={item.jpseps__Number__c}
           formatter="currency"
           data-id={item.Id}
           onchange={handleChangeValue}
@@ -176,8 +176,8 @@
       <template if:true={isDate}>
         <lightning-input
           type="date"
-          label={item.ColumnName__c}
-          value={item.Text__c}
+          label={item.jpseps__ColumnName__c}
+          value={item.jpseps__Text__c}
           data-id={item.Id}
           onchange={handleChangeValue}
         ></lightning-input>
@@ -186,8 +186,8 @@
       <template if:true={isTime}>
         <lightning-input
           type="time"
-          label={item.ColumnName__c}
-          value={item.Text__c}
+          label={item.jpseps__ColumnName__c}
+          value={item.jpseps__Text__c}
           data-id={item.Id}
           onchange={handleChangeValue}
         ></lightning-input>
@@ -199,7 +199,7 @@
         <template if:true={item.isCheckboxChecked}>
           <lightning-input
             type="checkbox"
-            label={item.ColumnName__c}
+            label={item.jpseps__ColumnName__c}
             data-id={item.Id}
             onchange={handleChangeValue}
             checked
@@ -209,7 +209,7 @@
         <template if:false={item.isCheckboxChecked}>
           <lightning-input
             type="checkbox"
-            label={item.ColumnName__c}
+            label={item.jpseps__ColumnName__c}
             data-id={item.Id}
             onchange={handleChangeValue}
           ></lightning-input>
@@ -218,8 +218,8 @@
       <!-- 選択リスト項目 -->
       <template if:true={isPicklist}>
         <lightning-combobox
-          label={item.ColumnName__c}
-          value={item.Text__c}
+          label={item.jpseps__ColumnName__c}
+          value={item.jpseps__Text__c}
           placeholder=""
           options={item.PickListValues}
           data-id={item.Id}

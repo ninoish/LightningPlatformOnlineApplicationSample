@@ -95,14 +95,14 @@ export default class WebForm extends LightningElement {
     if (data) {
       this.appTemplate = buildTemplateTree(data);
       const inputSteps =
-        this.appTemplate.appTemplatePages__r
+        this.appTemplate.jpseps__appTemplatePages__r
           ?.map((p) => {
             return {
               id: p.Id,
               label: p.Name,
               page: PAGE_DATA_ENTRY,
               order: null,
-              inputStepOrder: p.Order__c
+              inputStepOrder: p.jpseps__Order__c
             };
           })
           .sort((a, b) => a.inputStepOrder - b.inputStepOrder) ?? [];
@@ -144,14 +144,14 @@ export default class WebForm extends LightningElement {
           const o = {
             Id: a.Id,
             label: a.Name,
-            description: a.Description__c
+            description: a.jpseps__Description__c
           };
-          const c = apps.find((app) => app.category === a.Category__c);
+          const c = apps.find((app) => app.category === a.jpseps__Category__c);
           if (c) {
             c.apps.push(o);
           } else {
             apps.push({
-              category: a.Category__c,
+              category: a.jpseps__Category__c,
               apps: [o]
             });
           }
@@ -168,13 +168,13 @@ export default class WebForm extends LightningElement {
   }
 
   updatePageInputData(e) {
-    const pageIndex = this.appTemplate.appTemplatePages__r.findIndex(
+    const pageIndex = this.appTemplate.jpseps__appTemplatePages__r.findIndex(
       (p) => p.Id === this.currentStep.id
     );
     if (pageIndex === -1) {
       return;
     }
-    this.appTemplate.appTemplatePages__r[pageIndex] = e.detail;
+    this.appTemplate.jpseps__appTemplatePages__r[pageIndex] = e.detail;
   }
 
   async handleFormSubmit() {
@@ -224,7 +224,7 @@ export default class WebForm extends LightningElement {
           Id: null, // d.detailRecordIdはありえるのか？？
           [fnAD_TEXT_FIELD]:
             d[fnATD_ISTEXT_FIELD] ||
-            d.isMail__c ||
+            d.jpseps__isMail__c ||
             d[fnATD_ISDATE_FIELD] ||
             d[fnATD_ISTIME_FIELD] ||
             d[fnATD_ISCHECKBOX_FIELD] ||
@@ -234,7 +234,7 @@ export default class WebForm extends LightningElement {
                 : null
               : null,
           [fnAD_LONGTEXTAREA_FIELD]:
-            d.isLongTextArea__c || d.isURL__c ? v : null,
+            d.jpseps__isLongTextArea__c || d.jpseps__isURL__c ? v : null,
           [fnAD_NUMBER_FIELD]:
             d[fnATD_ISNUMBER_FIELD] || d[fnATD_ISCURRENCY_FIELD] ? v : null
         };

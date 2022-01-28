@@ -28,44 +28,44 @@ export const buildTemplateTree = (details) => {
   }
 
   const t = {
-    ...details[0].AppTemplateRow__r.AppTemplatePage__r
-      .objApplicationTemplate__r,
-    appTemplatePages__r: []
+    ...details[0].jpseps__AppTemplateRow__r.jpseps__AppTemplatePage__r
+      .jpseps__objApplicationTemplate__r,
+      jpseps__appTemplatePages__r: []
   };
   for (let i = 0; i < details.length; i++) {
     const d = { ...details[i] };
-    let page = t.appTemplatePages__r.find(
-      (p) => p.Id === d.AppTemplateRow__r.AppTemplatePage__r.Id
+    let page = t.jpseps__appTemplatePages__r.find(
+      (p) => p.Id === d.jpseps__AppTemplateRow__r.jpseps__AppTemplatePage__r.Id
     );
     if (!page) {
-      t.appTemplatePages__r.push({
-        ...d.AppTemplateRow__r.AppTemplatePage__r,
-        appTemplateRows__r: []
+      t.jpseps__appTemplatePages__r.push({
+        ...d.jpseps__AppTemplateRow__r.jpseps__AppTemplatePage__r,
+        jpseps__appTemplateRows__r: []
       });
-      page = t.appTemplatePages__r.find(
-        (p) => p.Id === d.AppTemplateRow__r.AppTemplatePage__r.Id
+      page = t.jpseps__appTemplatePages__r.find(
+        (p) => p.Id === d.jpseps__AppTemplateRow__r.jpseps__AppTemplatePage__r.Id
       );
     }
 
-    let row = page.appTemplateRows__r.find(
-      (r) => r.Id === d.AppTemplateRow__r.Id
+    let row = page.jpseps__appTemplateRows__r.find(
+      (r) => r.Id === d.jpseps__AppTemplateRow__r.Id
     );
     if (!row) {
-      page.appTemplateRows__r.push({
-        ...d.AppTemplateRow__r,
-        appTemplateDetails__r: []
+      page.jpseps__appTemplateRows__r.push({
+        ...d.jpseps__AppTemplateRow__r,
+        jpseps__appTemplateDetails__r: []
       });
-      row = page.appTemplateRows__r.find(
-        (r) => r.Id === d.AppTemplateRow__r.Id
+      row = page.jpseps__appTemplateRows__r.find(
+        (r) => r.Id === d.jpseps__AppTemplateRow__r.Id
       );
     }
 
-    if (d.DataType__c === "チェックボックス") {
-      d.isCheckboxChecked = d.Text__c === "true";
+    if (d.jpseps__DataType__c === "チェックボックス") {
+      d.isCheckboxChecked = d.jpseps__Text__c === "true";
     }
     // 項目が選択リストだった場合は、選択肢の項目値からコンボボックスの選択肢形式に変換
-    if (d.DataType__c === "選択リスト") {
-      d.PicklistValues = d.Options__c?.split(",").map((o) => {
+    if (d.jpseps__DataType__c === "選択リスト") {
+      d.PicklistValues = d.jpseps__Options__c?.split(",").map((o) => {
         return {
           label: o,
           value: o
@@ -73,16 +73,16 @@ export const buildTemplateTree = (details) => {
       });
     }
 
-    row.appTemplateDetails__r.push(d);
+    row.jpseps__appTemplateDetails__r.push(d);
   }
   return t;
 };
 
 export const flattenAppTemplate = (appTemplate) => {
-  return appTemplate.appTemplatePages__r
+  return appTemplate.jpseps__appTemplatePages__r
     .map((p) => {
-      return p.appTemplateRows__r.map((r) => {
-        return JSON.parse(JSON.stringify(r.appTemplateDetails__r));
+      return p.jpseps__appTemplateRows__r.map((r) => {
+        return JSON.parse(JSON.stringify(r.jpseps__appTemplateDetails__r));
       });
     })
     .flat(3);
